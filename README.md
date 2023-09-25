@@ -1,6 +1,40 @@
 # Svelte kit
 
-#### TODO: Passos inicias (criando o projeto e explicando as opções dadas)
+## Passos Iniciais
+
+Para criar nosso projeto Svelte, temos alguns pré-requisitos.
+
+1 - Precisamos ter o node e o npm instalados na máquina. Estarei utilizando o `node v20.5.1` e o `npm v9.8.1` para este projeto.
+
+2 - Executar o comando `npm create svelte@latest <nome-do-app>`, ao rodar este comando, o projeto será inicializado e algumas configurações podem ser selecionadas via linha de comando mesmo. Navegue usando as setas do teclado e selecione uma opção com a tecla enter
+
+```
+- Template da aplicação. Temos projeto demo, somente o esqueleto e template de biblioteca. Estarei utilizando Skeleton project.
+
+Welcome to SvelteKit!
+
+◆  Which Svelte app template?
+│  ● SvelteKit demo app (A demo app showcasing some of the features of SvelteKit - play a word guessing game that works without JavaScript!)
+│  ○ Skeleton project
+│  ○ Library project
+
+- Checagem de tipos. Usando JS com comentários JSDoc, usando sintaxe TypeScript ou sem checagem de tipos. Estarei utilizando a opção TypeScript.
+
+◆  Add type checking with TypeScript?
+│  ● Yes, using JavaScript with JSDoc comments
+│  ○ Yes, using TypeScript syntax
+│  ○ No
+
+- Opções adicionais, marque com a tecla espaço o que preferir. Aqui não utilizarei nenhuma das oções.
+
+◆  Select additional options (use arrow keys/space bar)
+│  ◻ Add ESLint for code linting
+│  ◻ Add Prettier for code formatting
+│  ◻ Add Playwright for browser testing
+│  ◻ Add Vitest for unit testing
+```
+
+Depois de configurado via linha de comando, o diretório será criado e alguns passos adicionais são necessários. Precisamos acessar o diretório e rodar o comando `npm install`, depois disso basta rodar `npm run dev -- --open` e o projeto será aberto no seu navegador padrão.
 
 ## Estrutura do Projeto Criado
 
