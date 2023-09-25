@@ -1,5 +1,7 @@
 # Svelte kit
 
+#### TODO: Passos inicias (criando o projeto e explicando as opções dadas)
+
 ## Estrutura do Projeto Criado
 
 - .svelte-kit & node-modules: Contém arquivos gerados pelo svelte. Podemos ignorar por enquanto.
