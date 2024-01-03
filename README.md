@@ -121,3 +121,101 @@ routes
 ```
 
 Agora, se acessar o localhost, irá notar que o conteúdo do Layout sempre permanece nas páginas e que o conteúdo único das rotas é renderezido através da tag `<slot />`
+
+## Layouts específicos para rotas
+
+O arquivo `+layout` da raiz, aplica o mesmo layout para todas as rotas que temos no nosso projeto. Mas e se quisermos utilizar um layout específico para alguma rota? Basta criar um arquivo `+layout.svelte` dentro da pasta da rota desejada, tendo o arquivo dentro de um diretório específico de rota o layout será aplicado somente àquela rota. 
+
+Vamos criar um arquivo +layout.svelte dentro da pasta portfolio e adicionarmos um conteúdo dele para testarmos. Lembrando que é necessário a tag `<slot />` para que o conteúdo do arquivo `+page.svelte` seja carregado neste arquivo.
+
+```
+// Arquivo
+
+<h1>Layout do portfolio</h1>
+<slot />
+
+// Estrutura de arquivos dentro de /src/routes
+
+ routes
+├── contato
+│   └── +page.svelte
+├── +layout.svelte
+├── +page.svelte
+├── portfolio
+│   ├── +layout.svelte
+│   └── +page.svelte
+└── sobre
+    └── +page.svelte
+```
+
+Agora se navegarmos entre as páginas, veremos que o conteúdo adicionado neste novo arquivo só se aplica na página portfólio.
+
+## Páginas de erro
+
+Vamos adicionar um novo item na lista do arquivo `+layout.svelte` geral do projeto. Neste caso, como não criamos a rota para este novo item, ao acessarmos o item teremos o erro 404. No diretório de rotas, vamos criar um arquivo chamada `+error.svelte`. Quando uma página que não existe for acessada, ao invés de um erro 404 ser exibido, o conteúdo do arquivo `+error.svelte` será carregado. Isto permite personalizar as mensagens de erro que serão exibidas no projeto.
+
+```
+routes
+├── contato
+│   └── +page.svelte
+├── +error.svelte
+├── +layout.svelte
+├── +page.svelte
+├── portfolio
+│   ├── +layout.svelte
+│   └── +page.svelte
+└── sobre
+    └── +page.svelte
+```
+
+## Adicionado bibliotecas com svelte-add
+
+O svelte-add serve para adicionarmos novas bibliotecas no nosso projeto svelte utilizando terminal. Ele integra tailwind, bootstrap e muitos outros. Cheque o [repositório oficial](https://github.com/svelte-add/svelte-add) para mais informações. Aqui vamos adicionar o TailwindCSS para estilizarmos nossa aplicação com o comando `npx svelte-add@latest tailwindcss  --forms --typography`.
+
+## Componentes
+
+Os componentes em svelte, sempre serão um arquivo svelte e, diferente do Angular por exemplo, não precisamos importar ele no módulo global, só de criarmos o arquivo e importando ele onde iremos utilizar já funciona. Os componentes devem ser nomeados com PascalCase. Um componente pode ter as tags script e style também.
+
+## Alias 
+
+Note que dentro da pasta src, temos uma pasta chamada `lib`. Em projetos Svelte, costumamos colocar nossos componentes dentro desta pasta. Vamos supor que temos um componente chamado `Logo.svelte` lá dentro e iremos utilizar ele dentro do `+page.svelte` de `/src`. O arquivo ficaria assim:
+
+```svelte
+<script>
+  // Import com o caminho completo
+  import Logo from '../lib/Logo.svelte';
+</script>
+
+<h1>Aprendendo Svelte</h1>
+
+<Logo />
+```
+
+O svelte oferece um recurso de alias para estes casos e, para a pasta lib, ele já vem configurado por padrão, basta utilizar o símbolo $ + pasta ficando assim:
+
+```svelte
+<script>
+  // Import com o alias
+  import Logo from '$lib/Logo.svelte';
+</script>
+
+<h1>Aprendendo Svelte</h1>
+
+<Logo />
+```
+
+Isso evita imports errados no código utilizando navegação de diretórios com '..' e também facilita uma possível refatoração, caso o arquivo em questão mude de diretório, o svelte sempre saberá chegar no diretório lib através do alias. Também é possível criar seu próprio alias, vamos por exemplo criar uma pasta chamada 'utils' dentro de /src. Para criarmos o alias desta pasta, basta acessar o arquivo `svelte.config.js` e adicionar o parâmetro alias dentro de kit, ficando assim:
+
+```js 
+kit: {
+  alias: {
+    $utils: "/src/utils",
+  },
+  // adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
+  // If your environment is not supported or you settled on a specific environment, switch out the adapter.
+  // See https://kit.svelte.dev/docs/adapters for more information about adapters.
+  adapter: adapter(),
+},
+```
+
+
